@@ -1,0 +1,10 @@
+include Makefile.compile.flags
+
+%.c.o : %.c
+	$(QKECHO) CC $<
+	$(Q)$(CC) $(CC_FLAGS) -o $@ $<
+
+%.s.o : %.s
+	$(QKECHO) AS $<
+	$(Q)$(AS) $(AS_FLAGS) -o $@ $<
+
