@@ -113,7 +113,7 @@ void csetup(void)
 	//	(* (short *) 0xB8000) = 0x0F00 | *p;
 
 	sprintf(s, "$$BOOT-IDENT: Bootloader: Umbrella v0.0.1, "
-			    "Kernel: Sinx v0.0.0.0.2");
+			    "Kernel: Matrix v0.0.0.0.1");
 	for (int i = 0; i < sizeof(s); ++i)
 		((short *) 0xB8000)[80 + i] = 0x0F00 | (short) s[i];
 

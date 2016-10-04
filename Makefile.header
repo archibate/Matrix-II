@@ -1,0 +1,25 @@
+include Makefile.config
+
+HOST_UNAME	:=$(shell uname)
+HOST_OS		:=$(shell uname -o)
+HOST_PLATFORM	:=$(shell uname -m)
+WD	:=$(shell pwd)
+SRC	:=$(PWD)
+TOOLS	:=$(SRC)/tools
+
+Q	:=@
+QKECHO	:=@echo
+
+GCC	:=$(CROSS)gcc
+CC	:=$(CROSS)cc
+AS	:=$(CROSS)as
+LD	:=$(CROSS)ld
+OBJCOPY	:=$(CROSS)objcopy
+MAKE	:=make
+SH	:=sh
+RM	:=rm -f
+EDIMG	:=$(TOOLS)/edimg
+
+MAKE_FLAGS      =-I $(SRC)
+MAKES           :=$(MAKE) $(MAKE_FLAGS)
+
