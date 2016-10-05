@@ -2,8 +2,6 @@ include Makefile.header
 
 BOOT	:=boot/boot.bin
 IMAGE	:=build/Image
-BOOT_FULL	:=$(SRC)/$(BOOT)
-IMAGE_FULL	:=$(SRC)/$(IMAGE)
 
 default : target
 
@@ -32,5 +30,14 @@ clean :
 
 run : hda.img
 	$(QKECHO) Use QEMU emulated computer to run our kernel
-	$(Q)qemu-system-i386 -m 64 -hda hda.img -boot a
+	$(Q)#qemu-system-i386 -m 64 -hda hda.img -boot a
+	$(Q)qemu-system-i386 -m 64 -hda hda.img -boot a > /dev/null 2>&1 &
+	$(Q)sleep 0.1
+
+debug : hda.img
+	$(QKECHO) Use QEMU emulated computer to run our kernel
+	$(Q)qemu-system-i386 -m 64 -hda hda.img -boot a -S -s > /dev/null 2>&1 &
+	$(Q)sleep 0.1
+	$(QKECHO) Use CGDB to debug our kernel
+	$(Q)cgdb -x gdbinit
 

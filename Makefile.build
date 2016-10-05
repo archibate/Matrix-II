@@ -1,0 +1,23 @@
+
+MOD_OBJS	+=$(foreach source, $(MOD_SRCS), $(source).o) $(MOD_EXTRA_OBJS)
+MOD_FILE	=$(MOD_NAME).$(MOD_TYPE)
+MOD_LDSCRIPT	=$(MOD_NAME).ld
+
+default : target
+
+include Makefile.compile
+
+target : $(MOD_FILE)
+
+$(MOD_NAME).ko : $(MOD_OBJS)
+		$(QKECHO) LD $@
+		$(Q)$(LD) $(LD_FLAGS) -T $(MOD_LDSCRIPT) -o $@ $(MOD_OBJS)
+
+$(MOD_NAME).a : $(MOD_OBJS)
+		$(QKECHO) AR $@
+		$(Q)$(AR) $(AR_FLAGS) $@ $(MOD_OBJS)
+
+clean :
+	$(QKECHO) CLEAN $(WD)
+	$(Q)$(RM) $(MOD_OBJS)
+

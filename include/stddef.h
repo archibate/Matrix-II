@@ -28,7 +28,33 @@
 #endif	/* likely */
 #ifndef	unlikely
 #define	unlikely(x)	(__builtin_expect((x), 0))
-#endif /* unlikely */
+#endif 	/* unlikely */
+#ifndef	assert
+#define	assert(x, info) ({ \
+		if (unlikely(!(x))) { \
+			assert_panic(info); \
+		} \
+	})
+#endif	/* assert */
+#ifndef	assert_info
+#define	assert_info(x, info) ({ \
+		if (unlikely(!(x))) { \
+			assert_panic(info); \
+		} \
+	})
+#endif	/* assert_info */
+#ifndef	assert_quick
+#define	assert_quick(x) ({ \
+		if (unlikely(!(x))) { \
+			assert_panic(info); \
+		} \
+	})
+#endif	/* assert_quick */
+#ifndef	assert_static
+#define	assert_static(x) ({ \
+		switch (x) { case 0: default: ; }; \
+	})
+#endif	/* assert_static */
 
 #endif	/* _STDDEF_H */
 

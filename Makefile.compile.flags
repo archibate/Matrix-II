@@ -5,8 +5,9 @@ INCLUDES	=-I $(WD) -I $(SRC) -I $(SRC)/include
 AS_FLAGS	=$(INCLUDES)
 CC_STANDARD	=c99
 #CC_PEDANTIC	=-pedantic -Werror=pedantic
-CC_OPTIONS	=-m$(BITS) $(CC_PEDANTIC) -std=$(CC_STANDARD) -W -nostdlib -nostdinc \
-		 -fomit-frame-pointer -ggdb -gstabs+
+CC_OPTIONS	=-m$(BITS) $(CC_PEDANTIC) -std=$(CC_STANDARD) -W -nostdlib \
+		-nostdinc -fomit-frame-pointer -fno-builtin
+CC_DEBUGFLAGS	=-ggdb -gstabs+
 OPTIZIME	=0
 CC_OPTIZIME	=-O$(OPTIZIME)
 CC_WARNNINGS	=-Wall -Wno-parentheses -Wno-long-long -Wno-builtin \
@@ -21,7 +22,8 @@ CC_DEFINES	=-D__ARCH__=$(ARCH) -D__MARCH__=$(MARCH) \
 		 -D__CROSS__=$(CROSS) -D__BITS__=$(BITS) \
 		-D__OPTIZIME__=$(OPTIMIZE) -D__CC__=$(CC)
 CC_INCLUDES	=$(INCLUDES)
-CC_FLAGS	=-c $(CC_OPTIONS) $(CC_OPTIZIME) $(CC_WARNNINGS) \
-		 $(CC_DEFINES) $(CC_INCLUDES)
+CC_FLAGS	=-c $(CC_OPTIONS) $(CC_OPTIZIME) $(CC_DEBUGFLAGS)\
+		 $(CC_WARNNINGS) $(CC_DEFINES) $(CC_INCLUDES)
 LD_FLAGS	=-N -e __entry -m elf_$(MARCH) -nostdlib
+AR_FLAGS	=cqs
 
