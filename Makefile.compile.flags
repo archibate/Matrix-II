@@ -10,7 +10,7 @@ CC_OPTIONS	=-m$(BITS) $(CC_PEDANTIC) -std=$(CC_STANDARD) -W -nostdlib \
 CC_DEBUGFLAGS	=-ggdb -gstabs+
 OPTIZIME	=0
 CC_OPTIZIME	=-O$(OPTIZIME)
-CC_WARNNINGS	=-Wall -Wno-parentheses -Wno-long-long -Wno-builtin \
+CC_WARNNINGS	=-Wall -Wno-parentheses -Wno-long-long \
 		 -Wno-unused-function -Werror=sign-compare \
 		 -Wno-unused-parameter -Werror=type-limits -Wno-comment \
 		 -Werror=array-bounds -Werror=uninitialized \

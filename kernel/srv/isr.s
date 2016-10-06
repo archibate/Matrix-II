@@ -1,0 +1,1098 @@
+.section .text
+
+.macro	define_isr_entry	nr
+.global	isr_entry_\nr
+isr_entry_\nr:
+	pushl	$0
+	pushl	$\nr
+	jmp	isr_entry_route
+	.align	8, 0x90
+.endm
+
+.macro	define_isr_entry_errcd	nr
+.global	isr_entry_\nr
+isr_entry_\nr:
+	pushl	$\nr
+	jmp	isr_entry_route
+	.align	8, 0x90
+.endm
+
+.macro	define_default_isr_handler	nr
+.global	isr_handler_\nr
+isr_handler_\nr:
+	jmp	isr_handler_default
+.endm
+
+.align	16
+define_isr_entry	0x00
+define_isr_entry	0x01
+define_isr_entry	0x02
+define_isr_entry	0x03
+define_isr_entry	0x04
+define_isr_entry	0x05
+define_isr_entry	0x06
+define_isr_entry	0x07
+define_isr_entry_errcd	0x08
+define_isr_entry	0x09
+define_isr_entry_errcd	0x0a
+define_isr_entry_errcd	0x0b
+define_isr_entry_errcd	0x0c
+define_isr_entry_errcd	0x0d
+define_isr_entry_errcd	0x0e
+define_isr_entry	0x0f
+define_isr_entry_errcd	0x10
+define_isr_entry	0x11
+define_isr_entry	0x12
+define_isr_entry	0x13
+define_isr_entry	0x14
+define_isr_entry	0x15
+define_isr_entry	0x16
+define_isr_entry	0x17
+define_isr_entry	0x18
+define_isr_entry	0x19
+define_isr_entry	0x1a
+define_isr_entry	0x1b
+define_isr_entry	0x1c
+define_isr_entry	0x1d
+define_isr_entry	0x1e
+define_isr_entry	0x1f
+define_isr_entry	0x20
+define_isr_entry	0x21
+define_isr_entry	0x22
+define_isr_entry	0x23
+define_isr_entry	0x24
+define_isr_entry	0x25
+define_isr_entry	0x26
+define_isr_entry	0x27
+define_isr_entry	0x28
+define_isr_entry	0x29
+define_isr_entry	0x2a
+define_isr_entry	0x2b
+define_isr_entry	0x2c
+define_isr_entry	0x2d
+define_isr_entry	0x2e
+define_isr_entry	0x2f
+define_isr_entry	0x30
+define_isr_entry	0x31
+define_isr_entry	0x32
+define_isr_entry	0x33
+define_isr_entry	0x34
+define_isr_entry	0x35
+define_isr_entry	0x36
+define_isr_entry	0x37
+define_isr_entry	0x38
+define_isr_entry	0x39
+define_isr_entry	0x3a
+define_isr_entry	0x3b
+define_isr_entry	0x3c
+define_isr_entry	0x3d
+define_isr_entry	0x3e
+define_isr_entry	0x3f
+define_isr_entry	0x40
+define_isr_entry	0x41
+define_isr_entry	0x42
+define_isr_entry	0x43
+define_isr_entry	0x44
+define_isr_entry	0x45
+define_isr_entry	0x46
+define_isr_entry	0x47
+define_isr_entry	0x48
+define_isr_entry	0x49
+define_isr_entry	0x4a
+define_isr_entry	0x4b
+define_isr_entry	0x4c
+define_isr_entry	0x4d
+define_isr_entry	0x4e
+define_isr_entry	0x4f
+define_isr_entry	0x50
+define_isr_entry	0x51
+define_isr_entry	0x52
+define_isr_entry	0x53
+define_isr_entry	0x54
+define_isr_entry	0x55
+define_isr_entry	0x56
+define_isr_entry	0x57
+define_isr_entry	0x58
+define_isr_entry	0x59
+define_isr_entry	0x5a
+define_isr_entry	0x5b
+define_isr_entry	0x5c
+define_isr_entry	0x5d
+define_isr_entry	0x5e
+define_isr_entry	0x5f
+define_isr_entry	0x60
+define_isr_entry	0x61
+define_isr_entry	0x62
+define_isr_entry	0x63
+define_isr_entry	0x64
+define_isr_entry	0x65
+define_isr_entry	0x66
+define_isr_entry	0x67
+define_isr_entry	0x68
+define_isr_entry	0x69
+define_isr_entry	0x6a
+define_isr_entry	0x6b
+define_isr_entry	0x6c
+define_isr_entry	0x6d
+define_isr_entry	0x6e
+define_isr_entry	0x6f
+define_isr_entry	0x70
+define_isr_entry	0x71
+define_isr_entry	0x72
+define_isr_entry	0x73
+define_isr_entry	0x74
+define_isr_entry	0x75
+define_isr_entry	0x76
+define_isr_entry	0x77
+define_isr_entry	0x78
+define_isr_entry	0x79
+define_isr_entry	0x7a
+define_isr_entry	0x7b
+define_isr_entry	0x7c
+define_isr_entry	0x7d
+define_isr_entry	0x7e
+define_isr_entry	0x7f
+define_isr_entry	0x80
+define_isr_entry	0x81
+define_isr_entry	0x82
+define_isr_entry	0x83
+define_isr_entry	0x84
+define_isr_entry	0x85
+define_isr_entry	0x86
+define_isr_entry	0x87
+define_isr_entry	0x88
+define_isr_entry	0x89
+define_isr_entry	0x8a
+define_isr_entry	0x8b
+define_isr_entry	0x8c
+define_isr_entry	0x8d
+define_isr_entry	0x8e
+define_isr_entry	0x8f
+define_isr_entry	0x90
+define_isr_entry	0x91
+define_isr_entry	0x92
+define_isr_entry	0x93
+define_isr_entry	0x94
+define_isr_entry	0x95
+define_isr_entry	0x96
+define_isr_entry	0x97
+define_isr_entry	0x98
+define_isr_entry	0x99
+define_isr_entry	0x9a
+define_isr_entry	0x9b
+define_isr_entry	0x9c
+define_isr_entry	0x9d
+define_isr_entry	0x9e
+define_isr_entry	0x9f
+define_isr_entry	0xa0
+define_isr_entry	0xa1
+define_isr_entry	0xa2
+define_isr_entry	0xa3
+define_isr_entry	0xa4
+define_isr_entry	0xa5
+define_isr_entry	0xa6
+define_isr_entry	0xa7
+define_isr_entry	0xa8
+define_isr_entry	0xa9
+define_isr_entry	0xaa
+define_isr_entry	0xab
+define_isr_entry	0xac
+define_isr_entry	0xad
+define_isr_entry	0xae
+define_isr_entry	0xaf
+define_isr_entry	0xb0
+define_isr_entry	0xb1
+define_isr_entry	0xb2
+define_isr_entry	0xb3
+define_isr_entry	0xb4
+define_isr_entry	0xb5
+define_isr_entry	0xb6
+define_isr_entry	0xb7
+define_isr_entry	0xb8
+define_isr_entry	0xb9
+define_isr_entry	0xba
+define_isr_entry	0xbb
+define_isr_entry	0xbc
+define_isr_entry	0xbd
+define_isr_entry	0xbe
+define_isr_entry	0xbf
+define_isr_entry	0xc0
+define_isr_entry	0xc1
+define_isr_entry	0xc2
+define_isr_entry	0xc3
+define_isr_entry	0xc4
+define_isr_entry	0xc5
+define_isr_entry	0xc6
+define_isr_entry	0xc7
+define_isr_entry	0xc8
+define_isr_entry	0xc9
+define_isr_entry	0xca
+define_isr_entry	0xcb
+define_isr_entry	0xcc
+define_isr_entry	0xcd
+define_isr_entry	0xce
+define_isr_entry	0xcf
+define_isr_entry	0xd0
+define_isr_entry	0xd1
+define_isr_entry	0xd2
+define_isr_entry	0xd3
+define_isr_entry	0xd4
+define_isr_entry	0xd5
+define_isr_entry	0xd6
+define_isr_entry	0xd7
+define_isr_entry	0xd8
+define_isr_entry	0xd9
+define_isr_entry	0xda
+define_isr_entry	0xdb
+define_isr_entry	0xdc
+define_isr_entry	0xdd
+define_isr_entry	0xde
+define_isr_entry	0xdf
+define_isr_entry	0xe0
+define_isr_entry	0xe1
+define_isr_entry	0xe2
+define_isr_entry	0xe3
+define_isr_entry	0xe4
+define_isr_entry	0xe5
+define_isr_entry	0xe6
+define_isr_entry	0xe7
+define_isr_entry	0xe8
+define_isr_entry	0xe9
+define_isr_entry	0xea
+define_isr_entry	0xeb
+define_isr_entry	0xec
+define_isr_entry	0xed
+define_isr_entry	0xee
+define_isr_entry	0xef
+define_isr_entry	0xf0
+define_isr_entry	0xf1
+define_isr_entry	0xf2
+define_isr_entry	0xf3
+define_isr_entry	0xf4
+define_isr_entry	0xf5
+define_isr_entry	0xf6
+define_isr_entry	0xf7
+define_isr_entry	0xf8
+define_isr_entry	0xf9
+define_isr_entry	0xfa
+define_isr_entry	0xfb
+define_isr_entry	0xfc
+define_isr_entry	0xfd
+define_isr_entry	0xfe
+define_isr_entry	0xff
+
+define_default_isr_handler	0x00
+define_default_isr_handler	0x01
+define_default_isr_handler	0x02
+define_default_isr_handler	0x03
+define_default_isr_handler	0x04
+define_default_isr_handler	0x05
+define_default_isr_handler	0x06
+define_default_isr_handler	0x07
+define_default_isr_handler	0x08
+define_default_isr_handler	0x09
+define_default_isr_handler	0x0a
+define_default_isr_handler	0x0b
+define_default_isr_handler	0x0c
+define_default_isr_handler	0x0d
+define_default_isr_handler	0x0e
+define_default_isr_handler	0x0f
+define_default_isr_handler	0x10
+define_default_isr_handler	0x11
+define_default_isr_handler	0x12
+define_default_isr_handler	0x13
+define_default_isr_handler	0x14
+define_default_isr_handler	0x15
+define_default_isr_handler	0x16
+define_default_isr_handler	0x17
+define_default_isr_handler	0x18
+define_default_isr_handler	0x19
+define_default_isr_handler	0x1a
+define_default_isr_handler	0x1b
+define_default_isr_handler	0x1c
+define_default_isr_handler	0x1d
+define_default_isr_handler	0x1e
+define_default_isr_handler	0x1f
+#define_default_isr_handler	0x20
+define_default_isr_handler	0x21
+define_default_isr_handler	0x22
+define_default_isr_handler	0x23
+define_default_isr_handler	0x24
+define_default_isr_handler	0x25
+define_default_isr_handler	0x26
+define_default_isr_handler	0x27
+define_default_isr_handler	0x28
+define_default_isr_handler	0x29
+define_default_isr_handler	0x2a
+define_default_isr_handler	0x2b
+define_default_isr_handler	0x2c
+define_default_isr_handler	0x2d
+define_default_isr_handler	0x2e
+define_default_isr_handler	0x2f
+#define_default_isr_handler	0x30
+define_default_isr_handler	0x31
+define_default_isr_handler	0x32
+define_default_isr_handler	0x33
+define_default_isr_handler	0x34
+define_default_isr_handler	0x35
+define_default_isr_handler	0x36
+define_default_isr_handler	0x37
+define_default_isr_handler	0x38
+define_default_isr_handler	0x39
+define_default_isr_handler	0x3a
+define_default_isr_handler	0x3b
+define_default_isr_handler	0x3c
+define_default_isr_handler	0x3d
+define_default_isr_handler	0x3e
+define_default_isr_handler	0x3f
+define_default_isr_handler	0x40
+define_default_isr_handler	0x41
+define_default_isr_handler	0x42
+define_default_isr_handler	0x43
+define_default_isr_handler	0x44
+define_default_isr_handler	0x45
+define_default_isr_handler	0x46
+define_default_isr_handler	0x47
+define_default_isr_handler	0x48
+define_default_isr_handler	0x49
+define_default_isr_handler	0x4a
+define_default_isr_handler	0x4b
+define_default_isr_handler	0x4c
+define_default_isr_handler	0x4d
+define_default_isr_handler	0x4e
+define_default_isr_handler	0x4f
+define_default_isr_handler	0x50
+define_default_isr_handler	0x51
+define_default_isr_handler	0x52
+define_default_isr_handler	0x53
+define_default_isr_handler	0x54
+define_default_isr_handler	0x55
+define_default_isr_handler	0x56
+define_default_isr_handler	0x57
+define_default_isr_handler	0x58
+define_default_isr_handler	0x59
+define_default_isr_handler	0x5a
+define_default_isr_handler	0x5b
+define_default_isr_handler	0x5c
+define_default_isr_handler	0x5d
+define_default_isr_handler	0x5e
+define_default_isr_handler	0x5f
+define_default_isr_handler	0x60
+define_default_isr_handler	0x61
+define_default_isr_handler	0x62
+define_default_isr_handler	0x63
+define_default_isr_handler	0x64
+define_default_isr_handler	0x65
+define_default_isr_handler	0x66
+define_default_isr_handler	0x67
+define_default_isr_handler	0x68
+define_default_isr_handler	0x69
+define_default_isr_handler	0x6a
+define_default_isr_handler	0x6b
+define_default_isr_handler	0x6c
+define_default_isr_handler	0x6d
+define_default_isr_handler	0x6e
+define_default_isr_handler	0x6f
+define_default_isr_handler	0x70
+define_default_isr_handler	0x71
+define_default_isr_handler	0x72
+define_default_isr_handler	0x73
+define_default_isr_handler	0x74
+define_default_isr_handler	0x75
+define_default_isr_handler	0x76
+define_default_isr_handler	0x77
+define_default_isr_handler	0x78
+define_default_isr_handler	0x79
+define_default_isr_handler	0x7a
+define_default_isr_handler	0x7b
+define_default_isr_handler	0x7c
+define_default_isr_handler	0x7d
+define_default_isr_handler	0x7e
+define_default_isr_handler	0x7f
+define_default_isr_handler	0x80
+define_default_isr_handler	0x81
+define_default_isr_handler	0x82
+define_default_isr_handler	0x83
+define_default_isr_handler	0x84
+define_default_isr_handler	0x85
+define_default_isr_handler	0x86
+define_default_isr_handler	0x87
+define_default_isr_handler	0x88
+define_default_isr_handler	0x89
+define_default_isr_handler	0x8a
+define_default_isr_handler	0x8b
+define_default_isr_handler	0x8c
+define_default_isr_handler	0x8d
+define_default_isr_handler	0x8e
+define_default_isr_handler	0x8f
+define_default_isr_handler	0x90
+define_default_isr_handler	0x91
+define_default_isr_handler	0x92
+define_default_isr_handler	0x93
+define_default_isr_handler	0x94
+define_default_isr_handler	0x95
+define_default_isr_handler	0x96
+define_default_isr_handler	0x97
+define_default_isr_handler	0x98
+define_default_isr_handler	0x99
+define_default_isr_handler	0x9a
+define_default_isr_handler	0x9b
+define_default_isr_handler	0x9c
+define_default_isr_handler	0x9d
+define_default_isr_handler	0x9e
+define_default_isr_handler	0x9f
+define_default_isr_handler	0xa0
+define_default_isr_handler	0xa1
+define_default_isr_handler	0xa2
+define_default_isr_handler	0xa3
+define_default_isr_handler	0xa4
+define_default_isr_handler	0xa5
+define_default_isr_handler	0xa6
+define_default_isr_handler	0xa7
+define_default_isr_handler	0xa8
+define_default_isr_handler	0xa9
+define_default_isr_handler	0xaa
+define_default_isr_handler	0xab
+define_default_isr_handler	0xac
+define_default_isr_handler	0xad
+define_default_isr_handler	0xae
+define_default_isr_handler	0xaf
+define_default_isr_handler	0xb0
+define_default_isr_handler	0xb1
+define_default_isr_handler	0xb2
+define_default_isr_handler	0xb3
+define_default_isr_handler	0xb4
+define_default_isr_handler	0xb5
+define_default_isr_handler	0xb6
+define_default_isr_handler	0xb7
+define_default_isr_handler	0xb8
+define_default_isr_handler	0xb9
+define_default_isr_handler	0xba
+define_default_isr_handler	0xbb
+define_default_isr_handler	0xbc
+define_default_isr_handler	0xbd
+define_default_isr_handler	0xbe
+define_default_isr_handler	0xbf
+define_default_isr_handler	0xc0
+define_default_isr_handler	0xc1
+define_default_isr_handler	0xc2
+define_default_isr_handler	0xc3
+define_default_isr_handler	0xc4
+define_default_isr_handler	0xc5
+define_default_isr_handler	0xc6
+define_default_isr_handler	0xc7
+define_default_isr_handler	0xc8
+define_default_isr_handler	0xc9
+define_default_isr_handler	0xca
+define_default_isr_handler	0xcb
+define_default_isr_handler	0xcc
+define_default_isr_handler	0xcd
+define_default_isr_handler	0xce
+define_default_isr_handler	0xcf
+define_default_isr_handler	0xd0
+define_default_isr_handler	0xd1
+define_default_isr_handler	0xd2
+define_default_isr_handler	0xd3
+define_default_isr_handler	0xd4
+define_default_isr_handler	0xd5
+define_default_isr_handler	0xd6
+define_default_isr_handler	0xd7
+define_default_isr_handler	0xd8
+define_default_isr_handler	0xd9
+define_default_isr_handler	0xda
+define_default_isr_handler	0xdb
+define_default_isr_handler	0xdc
+define_default_isr_handler	0xdd
+define_default_isr_handler	0xde
+define_default_isr_handler	0xdf
+define_default_isr_handler	0xe0
+define_default_isr_handler	0xe1
+define_default_isr_handler	0xe2
+define_default_isr_handler	0xe3
+define_default_isr_handler	0xe4
+define_default_isr_handler	0xe5
+define_default_isr_handler	0xe6
+define_default_isr_handler	0xe7
+define_default_isr_handler	0xe8
+define_default_isr_handler	0xe9
+define_default_isr_handler	0xea
+define_default_isr_handler	0xeb
+define_default_isr_handler	0xec
+define_default_isr_handler	0xed
+define_default_isr_handler	0xee
+define_default_isr_handler	0xef
+define_default_isr_handler	0xf0
+define_default_isr_handler	0xf1
+define_default_isr_handler	0xf2
+define_default_isr_handler	0xf3
+define_default_isr_handler	0xf4
+define_default_isr_handler	0xf5
+define_default_isr_handler	0xf6
+define_default_isr_handler	0xf7
+define_default_isr_handler	0xf8
+define_default_isr_handler	0xf9
+define_default_isr_handler	0xfa
+define_default_isr_handler	0xfb
+define_default_isr_handler	0xfc
+define_default_isr_handler	0xfd
+define_default_isr_handler	0xfe
+define_default_isr_handler	0xff
+
+.align	16
+
+isr_entry_route:	# 中断服务入口的标准路线
+	pushal
+	pushl	%ds
+	pushl	%es
+	pushl	%fs
+	pushl	%gs
+	movw	%ss, %ax
+	movw	%ax, %ds
+	movw	%ax, %es
+	movw	%ax, %fs
+	movw	%ax, %gs
+	movl	48(%esp), %eax
+	call	*isr_handler_table(, %eax, 4)
+	popl	%gs
+	popl	%fs
+	popl	%es
+	popl	%ds
+	popal
+	addl	$8, %esp
+	iretl
+
+isr_entry_default:
+isr_handler_default:
+	#.long	0xCCCCCCB8, 0x8000BFCC, 0xE8B9C00B, 0xF3000003, 0x90F4FAAB
+	#.word	0xF4FA
+	movl	$0xCCCCCCCC, %eax
+	movl	$0xC00B8000, %edi
+	movl	$1000, %ecx
+	rep
+	stosl
+	cli
+	hlt
+
+.section .data
+
+.global	isr_entry_table
+.global	isr_handler_table
+
+.align	16
+isr_entry_table:
+	.long	isr_entry_0x00
+	.long	isr_entry_0x01
+	.long	isr_entry_0x02
+	.long	isr_entry_0x03
+	.long	isr_entry_0x04
+	.long	isr_entry_0x05
+	.long	isr_entry_0x06
+	.long	isr_entry_0x07
+	.long	isr_entry_0x08
+	.long	isr_entry_0x09
+	.long	isr_entry_0x0a
+	.long	isr_entry_0x0b
+	.long	isr_entry_0x0c
+	.long	isr_entry_0x0d
+	.long	isr_entry_0x0e
+	.long	isr_entry_0x0f
+	.long	isr_entry_0x10
+	.long	isr_entry_0x11
+	.long	isr_entry_0x12
+	.long	isr_entry_0x13
+	.long	isr_entry_0x14
+	.long	isr_entry_0x15
+	.long	isr_entry_0x16
+	.long	isr_entry_0x17
+	.long	isr_entry_0x18
+	.long	isr_entry_0x19
+	.long	isr_entry_0x1a
+	.long	isr_entry_0x1b
+	.long	isr_entry_0x1c
+	.long	isr_entry_0x1d
+	.long	isr_entry_0x1e
+	.long	isr_entry_0x1f
+	.long	isr_entry_0x20
+	.long	isr_entry_0x21
+	.long	isr_entry_0x22
+	.long	isr_entry_0x23
+	.long	isr_entry_0x24
+	.long	isr_entry_0x25
+	.long	isr_entry_0x26
+	.long	isr_entry_0x27
+	.long	isr_entry_0x28
+	.long	isr_entry_0x29
+	.long	isr_entry_0x2a
+	.long	isr_entry_0x2b
+	.long	isr_entry_0x2c
+	.long	isr_entry_0x2d
+	.long	isr_entry_0x2e
+	.long	isr_entry_0x2f
+	.long	isr_entry_0x30
+	.long	isr_entry_0x31
+	.long	isr_entry_0x32
+	.long	isr_entry_0x33
+	.long	isr_entry_0x34
+	.long	isr_entry_0x35
+	.long	isr_entry_0x36
+	.long	isr_entry_0x37
+	.long	isr_entry_0x38
+	.long	isr_entry_0x39
+	.long	isr_entry_0x3a
+	.long	isr_entry_0x3b
+	.long	isr_entry_0x3c
+	.long	isr_entry_0x3d
+	.long	isr_entry_0x3e
+	.long	isr_entry_0x3f
+	.long	isr_entry_0x40
+	.long	isr_entry_0x41
+	.long	isr_entry_0x42
+	.long	isr_entry_0x43
+	.long	isr_entry_0x44
+	.long	isr_entry_0x45
+	.long	isr_entry_0x46
+	.long	isr_entry_0x47
+	.long	isr_entry_0x48
+	.long	isr_entry_0x49
+	.long	isr_entry_0x4a
+	.long	isr_entry_0x4b
+	.long	isr_entry_0x4c
+	.long	isr_entry_0x4d
+	.long	isr_entry_0x4e
+	.long	isr_entry_0x4f
+	.long	isr_entry_0x50
+	.long	isr_entry_0x51
+	.long	isr_entry_0x52
+	.long	isr_entry_0x53
+	.long	isr_entry_0x54
+	.long	isr_entry_0x55
+	.long	isr_entry_0x56
+	.long	isr_entry_0x57
+	.long	isr_entry_0x58
+	.long	isr_entry_0x59
+	.long	isr_entry_0x5a
+	.long	isr_entry_0x5b
+	.long	isr_entry_0x5c
+	.long	isr_entry_0x5d
+	.long	isr_entry_0x5e
+	.long	isr_entry_0x5f
+	.long	isr_entry_0x60
+	.long	isr_entry_0x61
+	.long	isr_entry_0x62
+	.long	isr_entry_0x63
+	.long	isr_entry_0x64
+	.long	isr_entry_0x65
+	.long	isr_entry_0x66
+	.long	isr_entry_0x67
+	.long	isr_entry_0x68
+	.long	isr_entry_0x69
+	.long	isr_entry_0x6a
+	.long	isr_entry_0x6b
+	.long	isr_entry_0x6c
+	.long	isr_entry_0x6d
+	.long	isr_entry_0x6e
+	.long	isr_entry_0x6f
+	.long	isr_entry_0x70
+	.long	isr_entry_0x71
+	.long	isr_entry_0x72
+	.long	isr_entry_0x73
+	.long	isr_entry_0x74
+	.long	isr_entry_0x75
+	.long	isr_entry_0x76
+	.long	isr_entry_0x77
+	.long	isr_entry_0x78
+	.long	isr_entry_0x79
+	.long	isr_entry_0x7a
+	.long	isr_entry_0x7b
+	.long	isr_entry_0x7c
+	.long	isr_entry_0x7d
+	.long	isr_entry_0x7e
+	.long	isr_entry_0x7f
+	.long	isr_entry_0x80
+	.long	isr_entry_0x81
+	.long	isr_entry_0x82
+	.long	isr_entry_0x83
+	.long	isr_entry_0x84
+	.long	isr_entry_0x85
+	.long	isr_entry_0x86
+	.long	isr_entry_0x87
+	.long	isr_entry_0x88
+	.long	isr_entry_0x89
+	.long	isr_entry_0x8a
+	.long	isr_entry_0x8b
+	.long	isr_entry_0x8c
+	.long	isr_entry_0x8d
+	.long	isr_entry_0x8e
+	.long	isr_entry_0x8f
+	.long	isr_entry_0x90
+	.long	isr_entry_0x91
+	.long	isr_entry_0x92
+	.long	isr_entry_0x93
+	.long	isr_entry_0x94
+	.long	isr_entry_0x95
+	.long	isr_entry_0x96
+	.long	isr_entry_0x97
+	.long	isr_entry_0x98
+	.long	isr_entry_0x99
+	.long	isr_entry_0x9a
+	.long	isr_entry_0x9b
+	.long	isr_entry_0x9c
+	.long	isr_entry_0x9d
+	.long	isr_entry_0x9e
+	.long	isr_entry_0x9f
+	.long	isr_entry_0xa0
+	.long	isr_entry_0xa1
+	.long	isr_entry_0xa2
+	.long	isr_entry_0xa3
+	.long	isr_entry_0xa4
+	.long	isr_entry_0xa5
+	.long	isr_entry_0xa6
+	.long	isr_entry_0xa7
+	.long	isr_entry_0xa8
+	.long	isr_entry_0xa9
+	.long	isr_entry_0xaa
+	.long	isr_entry_0xab
+	.long	isr_entry_0xac
+	.long	isr_entry_0xad
+	.long	isr_entry_0xae
+	.long	isr_entry_0xaf
+	.long	isr_entry_0xb0
+	.long	isr_entry_0xb1
+	.long	isr_entry_0xb2
+	.long	isr_entry_0xb3
+	.long	isr_entry_0xb4
+	.long	isr_entry_0xb5
+	.long	isr_entry_0xb6
+	.long	isr_entry_0xb7
+	.long	isr_entry_0xb8
+	.long	isr_entry_0xb9
+	.long	isr_entry_0xba
+	.long	isr_entry_0xbb
+	.long	isr_entry_0xbc
+	.long	isr_entry_0xbd
+	.long	isr_entry_0xbe
+	.long	isr_entry_0xbf
+	.long	isr_entry_0xc0
+	.long	isr_entry_0xc1
+	.long	isr_entry_0xc2
+	.long	isr_entry_0xc3
+	.long	isr_entry_0xc4
+	.long	isr_entry_0xc5
+	.long	isr_entry_0xc6
+	.long	isr_entry_0xc7
+	.long	isr_entry_0xc8
+	.long	isr_entry_0xc9
+	.long	isr_entry_0xca
+	.long	isr_entry_0xcb
+	.long	isr_entry_0xcc
+	.long	isr_entry_0xcd
+	.long	isr_entry_0xce
+	.long	isr_entry_0xcf
+	.long	isr_entry_0xd0
+	.long	isr_entry_0xd1
+	.long	isr_entry_0xd2
+	.long	isr_entry_0xd3
+	.long	isr_entry_0xd4
+	.long	isr_entry_0xd5
+	.long	isr_entry_0xd6
+	.long	isr_entry_0xd7
+	.long	isr_entry_0xd8
+	.long	isr_entry_0xd9
+	.long	isr_entry_0xda
+	.long	isr_entry_0xdb
+	.long	isr_entry_0xdc
+	.long	isr_entry_0xdd
+	.long	isr_entry_0xde
+	.long	isr_entry_0xdf
+	.long	isr_entry_0xe0
+	.long	isr_entry_0xe1
+	.long	isr_entry_0xe2
+	.long	isr_entry_0xe3
+	.long	isr_entry_0xe4
+	.long	isr_entry_0xe5
+	.long	isr_entry_0xe6
+	.long	isr_entry_0xe7
+	.long	isr_entry_0xe8
+	.long	isr_entry_0xe9
+	.long	isr_entry_0xea
+	.long	isr_entry_0xeb
+	.long	isr_entry_0xec
+	.long	isr_entry_0xed
+	.long	isr_entry_0xee
+	.long	isr_entry_0xef
+	.long	isr_entry_0xf0
+	.long	isr_entry_0xf1
+	.long	isr_entry_0xf2
+	.long	isr_entry_0xf3
+	.long	isr_entry_0xf4
+	.long	isr_entry_0xf5
+	.long	isr_entry_0xf6
+	.long	isr_entry_0xf7
+	.long	isr_entry_0xf8
+	.long	isr_entry_0xf9
+	.long	isr_entry_0xfa
+	.long	isr_entry_0xfb
+	.long	isr_entry_0xfc
+	.long	isr_entry_0xfd
+	.long	isr_entry_0xfe
+	.long	isr_entry_0xff
+
+isr_handler_table:
+	.long	isr_handler_0x00
+	.long	isr_handler_0x01
+	.long	isr_handler_0x02
+	.long	isr_handler_0x03
+	.long	isr_handler_0x04
+	.long	isr_handler_0x05
+	.long	isr_handler_0x06
+	.long	isr_handler_0x07
+	.long	isr_handler_0x08
+	.long	isr_handler_0x09
+	.long	isr_handler_0x0a
+	.long	isr_handler_0x0b
+	.long	isr_handler_0x0c
+	.long	isr_handler_0x0d
+	.long	isr_handler_0x0e
+	.long	isr_handler_0x0f
+	.long	isr_handler_0x10
+	.long	isr_handler_0x11
+	.long	isr_handler_0x12
+	.long	isr_handler_0x13
+	.long	isr_handler_0x14
+	.long	isr_handler_0x15
+	.long	isr_handler_0x16
+	.long	isr_handler_0x17
+	.long	isr_handler_0x18
+	.long	isr_handler_0x19
+	.long	isr_handler_0x1a
+	.long	isr_handler_0x1b
+	.long	isr_handler_0x1c
+	.long	isr_handler_0x1d
+	.long	isr_handler_0x1e
+	.long	isr_handler_0x1f
+	.long	isr_handler_0x20
+	.long	isr_handler_0x21
+	.long	isr_handler_0x22
+	.long	isr_handler_0x23
+	.long	isr_handler_0x24
+	.long	isr_handler_0x25
+	.long	isr_handler_0x26
+	.long	isr_handler_0x27
+	.long	isr_handler_0x28
+	.long	isr_handler_0x29
+	.long	isr_handler_0x2a
+	.long	isr_handler_0x2b
+	.long	isr_handler_0x2c
+	.long	isr_handler_0x2d
+	.long	isr_handler_0x2e
+	.long	isr_handler_0x2f
+	.long	isr_handler_0x30
+	.long	isr_handler_0x31
+	.long	isr_handler_0x32
+	.long	isr_handler_0x33
+	.long	isr_handler_0x34
+	.long	isr_handler_0x35
+	.long	isr_handler_0x36
+	.long	isr_handler_0x37
+	.long	isr_handler_0x38
+	.long	isr_handler_0x39
+	.long	isr_handler_0x3a
+	.long	isr_handler_0x3b
+	.long	isr_handler_0x3c
+	.long	isr_handler_0x3d
+	.long	isr_handler_0x3e
+	.long	isr_handler_0x3f
+	.long	isr_handler_0x40
+	.long	isr_handler_0x41
+	.long	isr_handler_0x42
+	.long	isr_handler_0x43
+	.long	isr_handler_0x44
+	.long	isr_handler_0x45
+	.long	isr_handler_0x46
+	.long	isr_handler_0x47
+	.long	isr_handler_0x48
+	.long	isr_handler_0x49
+	.long	isr_handler_0x4a
+	.long	isr_handler_0x4b
+	.long	isr_handler_0x4c
+	.long	isr_handler_0x4d
+	.long	isr_handler_0x4e
+	.long	isr_handler_0x4f
+	.long	isr_handler_0x50
+	.long	isr_handler_0x51
+	.long	isr_handler_0x52
+	.long	isr_handler_0x53
+	.long	isr_handler_0x54
+	.long	isr_handler_0x55
+	.long	isr_handler_0x56
+	.long	isr_handler_0x57
+	.long	isr_handler_0x58
+	.long	isr_handler_0x59
+	.long	isr_handler_0x5a
+	.long	isr_handler_0x5b
+	.long	isr_handler_0x5c
+	.long	isr_handler_0x5d
+	.long	isr_handler_0x5e
+	.long	isr_handler_0x5f
+	.long	isr_handler_0x60
+	.long	isr_handler_0x61
+	.long	isr_handler_0x62
+	.long	isr_handler_0x63
+	.long	isr_handler_0x64
+	.long	isr_handler_0x65
+	.long	isr_handler_0x66
+	.long	isr_handler_0x67
+	.long	isr_handler_0x68
+	.long	isr_handler_0x69
+	.long	isr_handler_0x6a
+	.long	isr_handler_0x6b
+	.long	isr_handler_0x6c
+	.long	isr_handler_0x6d
+	.long	isr_handler_0x6e
+	.long	isr_handler_0x6f
+	.long	isr_handler_0x70
+	.long	isr_handler_0x71
+	.long	isr_handler_0x72
+	.long	isr_handler_0x73
+	.long	isr_handler_0x74
+	.long	isr_handler_0x75
+	.long	isr_handler_0x76
+	.long	isr_handler_0x77
+	.long	isr_handler_0x78
+	.long	isr_handler_0x79
+	.long	isr_handler_0x7a
+	.long	isr_handler_0x7b
+	.long	isr_handler_0x7c
+	.long	isr_handler_0x7d
+	.long	isr_handler_0x7e
+	.long	isr_handler_0x7f
+	.long	isr_handler_0x80
+	.long	isr_handler_0x81
+	.long	isr_handler_0x82
+	.long	isr_handler_0x83
+	.long	isr_handler_0x84
+	.long	isr_handler_0x85
+	.long	isr_handler_0x86
+	.long	isr_handler_0x87
+	.long	isr_handler_0x88
+	.long	isr_handler_0x89
+	.long	isr_handler_0x8a
+	.long	isr_handler_0x8b
+	.long	isr_handler_0x8c
+	.long	isr_handler_0x8d
+	.long	isr_handler_0x8e
+	.long	isr_handler_0x8f
+	.long	isr_handler_0x90
+	.long	isr_handler_0x91
+	.long	isr_handler_0x92
+	.long	isr_handler_0x93
+	.long	isr_handler_0x94
+	.long	isr_handler_0x95
+	.long	isr_handler_0x96
+	.long	isr_handler_0x97
+	.long	isr_handler_0x98
+	.long	isr_handler_0x99
+	.long	isr_handler_0x9a
+	.long	isr_handler_0x9b
+	.long	isr_handler_0x9c
+	.long	isr_handler_0x9d
+	.long	isr_handler_0x9e
+	.long	isr_handler_0x9f
+	.long	isr_handler_0xa0
+	.long	isr_handler_0xa1
+	.long	isr_handler_0xa2
+	.long	isr_handler_0xa3
+	.long	isr_handler_0xa4
+	.long	isr_handler_0xa5
+	.long	isr_handler_0xa6
+	.long	isr_handler_0xa7
+	.long	isr_handler_0xa8
+	.long	isr_handler_0xa9
+	.long	isr_handler_0xaa
+	.long	isr_handler_0xab
+	.long	isr_handler_0xac
+	.long	isr_handler_0xad
+	.long	isr_handler_0xae
+	.long	isr_handler_0xaf
+	.long	isr_handler_0xb0
+	.long	isr_handler_0xb1
+	.long	isr_handler_0xb2
+	.long	isr_handler_0xb3
+	.long	isr_handler_0xb4
+	.long	isr_handler_0xb5
+	.long	isr_handler_0xb6
+	.long	isr_handler_0xb7
+	.long	isr_handler_0xb8
+	.long	isr_handler_0xb9
+	.long	isr_handler_0xba
+	.long	isr_handler_0xbb
+	.long	isr_handler_0xbc
+	.long	isr_handler_0xbd
+	.long	isr_handler_0xbe
+	.long	isr_handler_0xbf
+	.long	isr_handler_0xc0
+	.long	isr_handler_0xc1
+	.long	isr_handler_0xc2
+	.long	isr_handler_0xc3
+	.long	isr_handler_0xc4
+	.long	isr_handler_0xc5
+	.long	isr_handler_0xc6
+	.long	isr_handler_0xc7
+	.long	isr_handler_0xc8
+	.long	isr_handler_0xc9
+	.long	isr_handler_0xca
+	.long	isr_handler_0xcb
+	.long	isr_handler_0xcc
+	.long	isr_handler_0xcd
+	.long	isr_handler_0xce
+	.long	isr_handler_0xcf
+	.long	isr_handler_0xd0
+	.long	isr_handler_0xd1
+	.long	isr_handler_0xd2
+	.long	isr_handler_0xd3
+	.long	isr_handler_0xd4
+	.long	isr_handler_0xd5
+	.long	isr_handler_0xd6
+	.long	isr_handler_0xd7
+	.long	isr_handler_0xd8
+	.long	isr_handler_0xd9
+	.long	isr_handler_0xda
+	.long	isr_handler_0xdb
+	.long	isr_handler_0xdc
+	.long	isr_handler_0xdd
+	.long	isr_handler_0xde
+	.long	isr_handler_0xdf
+	.long	isr_handler_0xe0
+	.long	isr_handler_0xe1
+	.long	isr_handler_0xe2
+	.long	isr_handler_0xe3
+	.long	isr_handler_0xe4
+	.long	isr_handler_0xe5
+	.long	isr_handler_0xe6
+	.long	isr_handler_0xe7
+	.long	isr_handler_0xe8
+	.long	isr_handler_0xe9
+	.long	isr_handler_0xea
+	.long	isr_handler_0xeb
+	.long	isr_handler_0xec
+	.long	isr_handler_0xed
+	.long	isr_handler_0xee
+	.long	isr_handler_0xef
+	.long	isr_handler_0xf0
+	.long	isr_handler_0xf1
+	.long	isr_handler_0xf2
+	.long	isr_handler_0xf3
+	.long	isr_handler_0xf4
+	.long	isr_handler_0xf5
+	.long	isr_handler_0xf6
+	.long	isr_handler_0xf7
+	.long	isr_handler_0xf8
+	.long	isr_handler_0xf9
+	.long	isr_handler_0xfa
+	.long	isr_handler_0xfb
+	.long	isr_handler_0xfc
+	.long	isr_handler_0xfd
+	.long	isr_handler_0xfe
+	.long	isr_handler_0xff
+
+#c010170d

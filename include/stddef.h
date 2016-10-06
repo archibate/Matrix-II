@@ -29,10 +29,17 @@
 #ifndef	unlikely
 #define	unlikely(x)	(__builtin_expect((x), 0))
 #endif 	/* unlikely */
+#ifndef	assert_panic
+#define	assert_panic(info, ...) ({ \
+		__asm__ ("cli;hlt"); \
+	})
+//#define	assert_panic
+#endif	/* assert_panic */
 #ifndef	assert
-#define	assert(x, info) ({ \
+#define	assert(x) ({ \
 		if (unlikely(!(x))) { \
-			assert_panic(info); \
+			assert_panic("Assert failed in %s:%u: %s", \
+				__FILE__, __LINE__, #x); \
 		} \
 	})
 #endif	/* assert */

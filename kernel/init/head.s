@@ -18,7 +18,7 @@ __mboot_header:
 	.long	MBOOT_HEADER_FLAGS
 	.long	MBOOT_CHECKSUM
 
-mboot_tmp_ptr:
+multiboot_tmp_ptr:
 	.long	0
 
 __entry:
@@ -28,10 +28,9 @@ _start:
 _head:
 	cli
 	cmpl	$0x10000000 + MBOOT_HEADER_MAGIC, %eax
-	jne	not_mboot
-	movl	%ebx, mboot_tmp_ptr
-not_mboot:
-
+	jne	not_multiboot
+	movl	%ebx, multiboot_tmp_ptr
+not_multiboot:
 	movl	$stack_top0, %esp
 	andl	$-15, %esp
 	movl	%esp, %ebp
@@ -43,6 +42,34 @@ load_gdt:
 	rep
 	movsl
 	lgdt	gdtr0
+
+init_8259a_pic:
+	movb	$0x11, %al
+	outb	%al, $0x20
+	outb	%al, $0xA0
+	movb	$0x20, %al
+	outb	%al, $0x21
+	movb	$0x28, %al
+	outb	%al, $0xA1
+	movb	$0x04, %al
+	outb	%al, $0x21
+	movb	$0x02, %al
+	outb	%al, $0xA1
+	movb	$0x01, %al
+	outb	%al, $0x21
+	outb	%al, $0xA1
+	movb	$0x00, %al
+	outb	%al, $0x21
+	outb	%al, $0xA1
+
+init_pit_timer:
+.equ	pit_timer_freq,	200	# 每秒 200 次时钟中断
+	movb	$0x43, %al
+	outb	%al, $0x36
+	movw	$1193180 / pit_timer_freq, %ax
+	outb	%al, $0x40
+	shrw	$8, %ax
+	outb	%al, $0x40
 
 load_idt:
 	#movl	$idt0, %esi
@@ -223,8 +250,8 @@ tss0:
 .equ	l1pt1_max,	0x10000*/
 
 headwork_is_done:
-	movl	mboot_tmp_ptr, %eax
-	movl	%eax, mboot_ptr
+	movl	multiboot_tmp_ptr, %eax
+	movl	%eax, multiboot_ptr
 
 	movl	$stack_top, %esp
 	movl	%esp, %ebp
