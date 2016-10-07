@@ -563,6 +563,8 @@ isr_entry_route:	# 中断服务入口的标准路线
 
 isr_entry_default:
 isr_handler_default:
+	movl	$0xCCCCCCCC, 0xC00B8000
+	.word	0xF4FA
 	#.long	0xCCCCCCB8, 0x8000BFCC, 0xE8B9C00B, 0xF3000003, 0x90F4FAAB
 	#.word	0xF4FA
 	movl	$0xCCCCCCCC, %eax

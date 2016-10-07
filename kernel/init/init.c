@@ -46,8 +46,8 @@ int init()
 {
 	//assert(multiboot_ptr);
 	if (multiboot_ptr) {
-		struct mmap_entry *mmap = (void *) multiboot_ptr->mmap_addr;
-		size_t mmap_length = multiboot_ptr->mmap_length;
+		//struct mmap_entry *mmap = (void *) multiboot_ptr->mmap_addr;
+		//size_t mmap_length = multiboot_ptr->mmap_length;
 	}
 	mm_init();
 	sched_init();
