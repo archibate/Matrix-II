@@ -108,13 +108,22 @@ load_tss:
 */
 
 set_tmp_page_table:
-set_tmp_pgd:
-	movl	$tmp_pte0_pa + 3, %eax
-	movl	$tmp_pgd_pa, %edi
+set_tmp_pde:
+	//movl	$tmp_pte0_pa + 3, %eax
+	//movl	$tmp_pde_pa, %edi
+	//stosl
+	//addl	$0x1000, %eax
+	//movl	$tmp_pde_pa + (0xC0000 >> 8), %edi
+	//stosl
+
+	movl	$tmp_pde_pa, %edi
+	movl	$0x400, %ecx
+	xorl	%eax, %eax
+	rep
 	stosl
-	addl	$0x1000, %eax
-	movl	$tmp_pgd_pa + (0xC0000 >> 8), %edi
-	stosl
+	movl	$tmp_pte0_pa + 3, tmp_pde_pa
+	movl	$tmp_pte0_pa + 0x1000 + 3, tmp_pde_pa + 0xC00
+	movl	$tmp_pte0_pa + 0x2000 + 3, tmp_pde_pa + 0xC04
 
 set_tmp_pte:
 	movl	$1024, %ecx	# 映射物理地址前 4MB
@@ -123,8 +132,8 @@ set_tmp_pte:
 .loop1:	stosl
 	addl	$0x1000, %eax
 	loop	.loop1
-	movl	$1024, %ecx	# 我们把 0x00000000-0x00400000
-	movl	$3, %eax	# 映射到 0xC0000000-0xC0400000
+	movl	$2048, %ecx	# 我们把 0x00000000-0x00800000
+	movl	$3, %eax	# 映射到 0xC0000000-0xC0800000
 .loop2:	stosl
 	addl	$0x1000, %eax
 	loop	.loop2
@@ -241,9 +250,9 @@ tss0:
 .equ	gdt0_la,	gdt0_pa + 0xC0000000
 .equ	idt0_pa,	0x0
 .equ	idt0_la,	idt0_pa + 0xC0000000
-.equ	cr3_value,	tmp_pgd_pa
+.equ	cr3_value,	tmp_pde_pa
 .equ	tss0_pa,	0x83800
-.equ	tmp_pgd_pa,	0x80000
+.equ	tmp_pde_pa,	0x80000
 .equ	tmp_pte0_pa,	0x81000
 /*.equ	l1pt0_max,	0x200
 .equ	l1pt1_pa,	l1pt0_pa + l1pt0_max * 4
