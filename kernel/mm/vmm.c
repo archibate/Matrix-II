@@ -7,7 +7,7 @@
 
 int vmm_init()
 {
-	size_t i;
+	ndx_t i;
 	/* PTE 从指向 0xC0000000 开始 */
 	for (i = 0; i < PTES_KERN_COUNT; ++i)
 		pde_kern[i + lin2pdeidx(KVMBASE)] =
@@ -34,14 +34,14 @@ int vmm_init()
 	return 0;
 }
 
-void mmap(pde_t pde, lin_t la, phy_t pa_and_flags)
+void mmap(pde_t pde, lin_t la, pgd_t pgd)
 {
-	size_t pdeidx = lin2pdeidx(la);
-	size_t pteidx = lin2pteidx(la);
+	ndx_t pdeidx = lin2pdeidx(la);
+	ndx_t pteidx = lin2pteidx(la);
 	pte_t pte;
-	if (unlikely(pde[pdeidx] & PAGE_PRESENT)) {
+	if (likely(page_present(pde[pdeidx]))) {
 		/* 线性地址 la 所对应的 PTE 存在 */
-		pte = (pte_t) kphy2lin(pde[pdeidx] & PAGE_MASK);
+		pte = (pte_t) kphy2lin(page_mask(pde[pdeidx]));
 	} else {
 		/* 对应的 PTE 还不存在，我们来添加一个 */
 		pte = (pte_t) pmm_alloc_page();	/* PMM 返回的是物理地址 */
@@ -50,22 +50,32 @@ void mmap(pde_t pde, lin_t la, phy_t pa_and_flags)
 		pte = (pte_t) kphy2lin(pte);
 		memset(pte, 0, PAGESZ);
 	}
-	pte[pteidx] = pa_and_flags;
+	pte[pteidx] = pgd;
 	vmm_cpu_invlpg(la);
 }
 
 phy_t get_mapping(pde_t pde, lin_t la)
 {
-	size_t pdeidx = lin2pdeidx(la);
-	size_t pteidx = lin2pteidx(la);
+	ndx_t pdeidx = lin2pdeidx(la);
+	ndx_t pteidx = lin2pteidx(la);
 	pte_t pte;
-	//if (unlikely(!(pde[pdeidx] & PAGE_PRESENT)))	/* PTE 不存在 */
-	if (!(pde[pdeidx] & PAGE_PRESENT))	/* PTE 不存在 */
+	if (unlikely(!page_present(pde[pdeidx])))	/* PTE 不存在 */
 		return 0;
-	/* 转为内核线性地址 */
+	/* 转为内核线性地址以访问 */
 	pte = (pte_t) kphy2lin(pde[pdeidx] & PAGE_MASK);
-	if (unlikely(!(pte[pteidx] & PAGE_PRESENT)))	/* 页不存在 */
+	if (unlikely(!page_present(pte[pteidx])))	/* 页不存在 */
 		return 0;
-	return pte[pteidx] & PAGE_MASK;
+	return page_mask(pte[pteidx]);
+}
+
+void munmap(pde_t pde, lin_t la)
+{
+	ndx_t pdeidx = lin2pdeidx(la);
+	ndx_t pteidx = lin2pteidx(la);
+	if (unlikely(!page_present(pde[pdeidx])))
+			return;
+	pte_t pte = (pte_t) kphy2lin(page_mask(pde[pdeidx]));
+	pte[pteidx] = 0;
+	vmm_cpu_invlpg(la);
 }
 

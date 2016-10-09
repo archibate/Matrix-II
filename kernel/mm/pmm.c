@@ -13,8 +13,8 @@ size_t phy_page_count = 0;
 
 int pmm_init()
 {
-	phy_t page_addr = (phy_t) pmm_free_space_end - PAGESZ;
-	while (page_addr >= (phy_t) pmm_free_space_start) {
+	phy_t page_addr = klin2phy(pmm_free_space_end) - PAGESZ;
+	while (page_addr >= klin2phy(pmm_free_space_start)) {
 		pmm_free_page(page_addr);
 		page_addr -= PAGESZ;
 		++phy_page_count;

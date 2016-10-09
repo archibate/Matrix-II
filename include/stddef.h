@@ -29,6 +29,9 @@
 #ifndef	unlikely
 #define	unlikely(x)	(__builtin_expect((x), 0))
 #endif 	/* unlikely */
+#ifndef	type_check_veglb
+#define	type_check_veglb(a, b)	((void) (a) == (b))
+#endif	/* type_check_veglb */
 #ifndef	assert_panic
 #define	assert_panic(info, ...) ({ \
 		__asm__ ("cli;hlt"); \
@@ -59,7 +62,7 @@
 #endif	/* assert_quick */
 #ifndef	assert_static
 #define	assert_static(x) ({ \
-		switch (x) { case 0: default: ; }; \
+		switch (0) { case 0: case (x): ; }; \
 	})
 #endif	/* assert_static */
 

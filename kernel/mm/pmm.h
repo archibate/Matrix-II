@@ -1,8 +1,8 @@
 #ifndef	_KERNEL_MM_PMM_H
 #define	_KERNEL_MM_PMM_H
 
-#ifndef	_KERNEL_MM_VMM_H
-#include <kernel/mm/vmm.h>
+#ifndef	_KERNEL_MM_MM_H
+#include <kernel/mm/mm.h>
 #endif
 
 extern r_t pmm_pa_stack[100];
