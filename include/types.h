@@ -20,6 +20,9 @@ typedef u16 word_t;
 typedef u32 long_t;
 typedef u64 qual_t;
 typedef unsigned int size_t;
+#ifdef	__NO_BUILTIN__
+typedef	char *__builtin_va_list;
+#endif
 typedef __builtin_va_list va_list;
 #undef	TRUE
 #undef	FALSE
@@ -31,8 +34,6 @@ enum boolean {
 };
 #endif
 #endif
-
-
 
 #endif
 

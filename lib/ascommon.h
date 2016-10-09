@@ -4,7 +4,11 @@
 static inline void as_outb(u8 data, u16 port)
 {
 	__asm__ (	"outb	%%al, %%dx"
+#ifndef	__TCC__
 			:: "dx" (port), "al" (data));
+#else
+			:: "d" (port), "a" (data));
+#endif
 }
 
 static inline u8 as_inb(u16 port)

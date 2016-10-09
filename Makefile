@@ -6,7 +6,7 @@ GRUB_FLOPPY	:=grub-floppy
 
 default : target
 
-target : fda.img
+target : hda.img
 
 all : fda.img hda.img
 

@@ -24,7 +24,7 @@ int memcmp(void *src, void *dst, size_t size)
 	u8 *dst8 = dst;
 	u8 *src8 = src;
 	while (size--)
-		if (unlikely(*dst8++ != *src8++))
+		if (*dst8++ != *src8++)
 			return TRUE;
 	return FALSE;
 }

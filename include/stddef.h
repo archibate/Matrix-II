@@ -19,9 +19,9 @@
 #define	FALSE	0
 #endif	/* FALSE */
 #endif	/* _ENUM_BOOLEAN */
-#if	__GNUC__ == 2 && __GNUC__MINOR__ < 96
-#define	__builtin_expert(x, expected)	(x)
-#error	GCC version lesser than 2.96, no __builtin_expect supported!
+#if	(__GNUC__ == 2 && __GNUC__MINOR__ < 96) || defined(__NO_BUILTIN__)
+#define	__builtin_expect(x, expected)	(x)
+//#error	GCC version lesser than 2.96, no __builtin_expect supported!
 #endif	/* __GNUC__ == 2 && __GNUC__MINOR__ < 96 */
 #ifndef	likely
 #define	likely(x)	(__builtin_expect((x), 1))
