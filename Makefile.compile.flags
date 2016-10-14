@@ -2,9 +2,9 @@ CC_FLAGS	=-c $(CC_OPTIONS) $(CC_OPTIZIME) $(CC_DEFINES) \
 		 $(CC_WARNNINGS) $(INCLUDES)
 INCLUDE_FLAGS	=-I $(WD) -I $(SRC) -I $(SRC)/include
 #CC_PEDANTIC	=-pedantic -Werror=pedantic
-CC_OPTIONS	=-m$(BITS) $(CC_PEDANTIC) $(CC_STANDARD) $(CC_MORE_OPTIONS)
-CC_MORE_OPTIONS	=-std=c99 -W -nostdlib -nostdinc -fomit-frame-pointer \
-		 -fno-builtin
+CC_OPTIONS	=$(CC_MORE_OPTIONS) $(CC_PEDANTIC)
+CC_MORE_OPTIONS	=-m$(BITS) -std=c99 -W -nostdlib -nostdinc -fno-builtin \
+		 -fomit-frame-pointer -fno-stack-protector
 DEBUG_FLAGS	=-ggdb -gstabs+
 OPTIZIME	=0
 CC_OPTIZIME	=-O$(OPTIZIME)

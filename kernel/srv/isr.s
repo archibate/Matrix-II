@@ -295,7 +295,7 @@ define_default_isr_handler	0x0a
 define_default_isr_handler	0x0b
 define_default_isr_handler	0x0c
 define_default_isr_handler	0x0d
-define_default_isr_handler	0x0e
+#define_default_isr_handler	0x0e
 define_default_isr_handler	0x0f
 define_default_isr_handler	0x10
 define_default_isr_handler	0x11

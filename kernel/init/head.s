@@ -104,6 +104,8 @@ load_tss:
 	rep
 	movsl
 	movw	$0x0018, %ax
+	cli
+	hlt
 	ltr	%ax
 */
 
@@ -167,8 +169,8 @@ gdt0:
 	.quad	0x00CF92000000FFFF	# SYS_DATA
 	.quad	0x00CFFA000000FFFF	# USR_CODE
 	.quad	0x00CFF2000000FFFF	# USR_DATA
-	#.quad	0x00008B083800006C	# TSS at 0x83800
-	.quad	0x0000000000000000	# reserved for TSS
+	.quad	0x00008B083800006C	# TSS at 0x83800
+	#.quad	0x0000000000000000	# reserved for TSS
 	.quad	0x0000000000000000	# reserved for LDT
 
 .equ	gdt0_len,	. - gdt0
@@ -273,6 +275,5 @@ headwork_is_done:
 	.org	0x800, 0
 stack_top0:
 
-.equ	stack_top,	stack_top0 + 0xC0000000
-
+.equ	stack_top,	0xC03F8000
 

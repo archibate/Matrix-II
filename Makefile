@@ -3,10 +3,11 @@ include Makefile.header
 BOOT		:=boot/boot.bin
 IMAGE		:=build/Image
 GRUB_FLOPPY	:=grub-floppy
+BOOT_DISK	:=fd
 
 default : target
 
-target : hda.img
+target : $(BOOT_DISK)a.img
 
 all : fda.img hda.img
 
@@ -69,7 +70,7 @@ debug-fd : fda.img
 	$(QKECHO) Use CGDB to debug our kernel
 	$(Q)cgdb -x gdbinit
 
-run : run-hd
+run : run-$(BOOT_DISK)
 
-debug : debug-hd
+debug : debug-$(BOOT_DISK)
 
